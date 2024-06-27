@@ -1,0 +1,49 @@
+<h2 mat-dialog-title>{{title}}</h2>
+<mat-dialog-content>
+  <mat-form-field class="full-width">
+    <mat-label>GitHubIssue</mat-label>
+  </mat-form-field>
+  <div class="alert alert-danger text-lg-center" *ngIf="isIssues">
+    <span>{{searcAllmessage}}</span>
+  </div>
+  <mat-card>
+    <mat-card-content>
+
+        <mat-form-field class="full-width">
+          <mat-label>Title</mat-label>
+          <input id="title" matInput required type="text"/> issue#1
+        </mat-form-field>
+
+
+        <mat-form-field class="full-width">
+          <mat-label>Body</mat-label>
+          <input id="body" matInput required type="text"/>issue bug
+        </mat-form-field>
+
+
+        <mat-form-field class="full-width">
+          <mat-label>Label</mat-label>
+          <input id="label" matInput required type="text"/>Bug
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+          <mat-label>Asignado</mat-label>
+          <input id="asignado" matInput required type="text"/>asignado
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+          <mat-label>Estado</mat-label>
+          <input id="estado" matInput required type="text"/>Estado
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+          <mat-label>Fecha creación</mat-label>
+          <input id="datec" matInput required type="text"/>Fecha
+        </mat-form-field>
+
+    </mat-card-content>
+  </mat-card>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button cdkFocusInitial mat-dialog-close mat-raised-button>Close</button>
+</mat-dialog-actions>

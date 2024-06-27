@@ -1,0 +1,51 @@
+<mat-card>
+  <mat-card-content>
+    <div class="container">
+      <mat-form-field>
+        <mat-label>User Mobile</mat-label>
+        <input [(ngModel)]="creditLineSearch.mobile" matInput>
+      </mat-form-field>
+      <mat-slide-toggle [disabled]="true" [(ngModel)]="creditLineSearch.unpaidTickets">Only users with debts</mat-slide-toggle>
+      <button (click)="search()" mat-icon-button>
+        <mat-icon>search</mat-icon>
+      </button>
+      <button (click)="resetSearch()" mat-icon-button>
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+  </mat-card-content>
+</mat-card>
+  <app-crud (create)="create()" [updateAction]="false" (read)="readCreditSales($event)"
+            [data]="creditLines" [deleteAction]="false" [title]="title"></app-crud>
+<mat-card>
+  <mat-card-content fxFlex="60%">
+    <mat-card-title>Tickets in credit line of {{actualMobile}}</mat-card-title><br>
+    <mat-table [dataSource]="creditSales" class="mat-elevation-z8">
+      <ng-container matColumnDef="ticketReference">
+        <mat-header-cell *matHeaderCellDef fxFlex="25%">Ticket reference</mat-header-cell>
+        <mat-cell *matCellDef="let item" fxFlex="25%">{{item.ticket.reference}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="price">
+        <mat-header-cell *matHeaderCellDef fxFlex="25%">Price</mat-header-cell>
+        <mat-cell *matCellDef="let item" fxFlex="25%">{{item.price}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="payed">
+        <mat-header-cell *matHeaderCellDef fxFlex="25%">Payed</mat-header-cell>
+        <mat-cell *matCellDef="let item" fxFlex="25%">{{item.payed}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef>Actions</mat-header-cell>
+        <mat-cell *matCellDef="let item" fxFlex="25%">
+          <mat-checkbox *ngIf="!item.payed"></mat-checkbox>
+        </mat-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+    <button [disabled]="true" color="accent" mat-raised-button>
+      <mat-icon>credit_card</mat-icon>
+      Checkout
+      <mat-icon>euro_symbol</mat-icon>
+    </button>
+  </mat-card-content><br>
+</mat-card>

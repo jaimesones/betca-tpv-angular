@@ -1,0 +1,20 @@
+<h2 mat-dialog-title>{{title}}</h2>
+<mat-dialog-content>
+    <mat-label><strong>Reference: </strong></mat-label>
+    <p>{{ data.reference ?? '' }}</p>
+</mat-dialog-content>
+<mat-dialog-content>
+    <mat-label><strong>Creation Date: </strong></mat-label>
+    <p>{{ data.creationDate | date: "short" ?? '' }}</p>
+</mat-dialog-content>
+<mat-dialog-content>
+    <mat-label><strong>Shoppings:</strong></mat-label>
+    <mat-list>
+        <mat-list-item *ngFor="let shopping of data.shoppings">
+            <p>{{ shopping.barcode }} x{{ shopping.amount }} = {{ shopping.total }} €</p>
+        </mat-list-item>
+    </mat-list>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button cdkFocusInitial mat-dialog-close mat-raised-button>Close</button>
+</mat-dialog-actions>

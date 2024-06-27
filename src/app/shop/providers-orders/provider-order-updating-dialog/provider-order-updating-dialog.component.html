@@ -1,0 +1,89 @@
+<h2 mat-dialog-title>{{title}}</h2>
+<mat-dialog-content>
+
+  <div class="flex-group">
+    <mat-form-field class="half-width" appearance="fill">
+      <mat-label>Reference</mat-label>
+      <input [(ngModel)]="providerOrder.reference" id="description" matInput disabled type="text"/>
+    </mat-form-field>
+    <mat-form-field class="half-width" appearance="fill">
+      <mat-label>Company</mat-label>
+      <input [(ngModel)]="providerOrder.company" id="company" matInput disabled type="text"/>
+    </mat-form-field>
+    <mat-form-field class="half-width" appearance="fill">
+      <mat-label>Opening Date</mat-label>
+      <input [(ngModel)]="providerOrder.openingDate" matInput disabled type="date">
+    </mat-form-field>
+  </div>
+
+  <div class="flex-group">
+    <mat-form-field class="half-width">
+      <mat-label>Barcode</mat-label>
+      <mat-select [(ngModel)]="providerOrder.company">
+        <mat-option *ngFor="let comp of providerOrder.company" [value]="comp">
+          {{comp}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="half-width">
+      <mat-label>Description</mat-label>
+      <input [(ngModel)]="providerOrder.description" matInput disabled type="text"/>
+    </mat-form-field>
+
+    <button mat-mini-fab color="" aria-label="add item">
+      <mat-icon>playlist_add</mat-icon>
+    </button>
+  </div>
+
+
+  <mat-table [dataSource]="dataSource" >
+
+    <ng-container matColumnDef="position">
+      <mat-header-cell *matHeaderCellDef fxFlex="10%"> # </mat-header-cell>
+      <mat-cell *matCellDef="let element" fxFlex="10%"> {{element.position}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="barcode">
+      <mat-header-cell *matHeaderCellDef fxFlex="20%"> Barcode </mat-header-cell>
+      <mat-cell  *matCellDef="let element" fxFlex="20%"> {{element.barcode}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="description">
+      <mat-header-cell  *matHeaderCellDef fxFlex="30%"> Description </mat-header-cell>
+      <mat-cell  *matCellDef="let element" fxFlex="30%"> {{element.description}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="requiredAmount">
+      <mat-header-cell  *matHeaderCellDef fxFlex="20%"> Required Amount </mat-header-cell>
+      <mat-cell  *matCellDef="let element" fxFlex="20%"> {{element.requiredAmount}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="finalAmount">
+      <mat-header-cell  *matHeaderCellDef fxFlex="20%"> Final Amount </mat-header-cell>
+      <mat-cell  *matCellDef="let element" fxFlex="20%">
+        <button (click)="decreaseAmount(element)" color="accent" mat-icon-button>
+          <mat-icon>remove_circle_outline</mat-icon>
+        </button>
+        {{element.finalAmount}}
+        <button (click)="incrementAmount(element)" color="primary" mat-icon-button>
+          <mat-icon>add_circle_outline</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row  *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row  *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button cdkFocusInitial mat-dialog-close mat-raised-button>Close</button>
+  <button (click)="create()" *ngIf="isCreate()" [disabled]=invalid() color="primary" mat-raised-button>Create
+  </button>
+  <button (click)="update()" *ngIf="!isCreate()" [disabled]=invalid() color="primary" mat-raised-button>Update
+  </button>
+
+  <button (click)="close()" *ngIf="!isCreate()" [disabled]=invalid() color="primary" mat-raised-button>Close Order
+  </button>
+</mat-dialog-actions>

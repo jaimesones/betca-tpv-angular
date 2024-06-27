@@ -1,0 +1,44 @@
+<mat-card>
+  <mat-card-content>
+    <mat-label><strong>Filters: </strong></mat-label>
+    <mat-form-field>
+      <mat-label>Provider Company</mat-label>
+      <input [(ngModel)]="providerInvoiceSearch.providerCompany" matInput>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Order Reference</mat-label>
+      <input [(ngModel)]="providerInvoiceSearch.orderReference" matInput>
+    </mat-form-field>
+    <button (click)="search()" mat-icon-button>
+      <mat-icon>search</mat-icon>
+    </button>
+    <button (click)="resetSearch()" mat-icon-button>
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-card-content>
+</mat-card>
+<app-crud (create)="create()" (read)="read($event)" (update)="update($event)"
+          [data]="providerInvoices" [deleteAction]="false" [title]="title"></app-crud>
+<mat-card>
+  <mat-card-content>
+    <mat-form-field>
+      <mat-label>Quarter of the year</mat-label>
+      <mat-select [(ngModel)]="quarterOfYear.quarter">
+        <mat-option *ngFor="let q of quarters" [value]="q">
+          {{q}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Year</mat-label>
+      <mat-select [(ngModel)]="quarterOfYear.year" (click)="getYearsOfAllCreationDate()">
+        <mat-option *ngFor="let y of (years | async)" [value]="y">
+          {{y}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button (click)="getTotalForQuarterOfYear()" mat-icon-button>
+      <mat-icon>search</mat-icon>
+    </button>
+  </mat-card-content>
+</mat-card>

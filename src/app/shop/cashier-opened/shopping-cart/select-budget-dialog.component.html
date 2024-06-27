@@ -1,0 +1,23 @@
+<h2 mat-dialog-title>Select Budget Reference</h2>
+<ng-container *ngIf="(budgets$ | async).length > 0; else budgetsNotFound">
+    <mat-selection-list [multiple]="false" #selectBudgetList>
+        <mat-list-option *ngFor="let budget of (budgets$ | async)">
+            {{ budget.reference }}
+        </mat-list-option>
+    </mat-selection-list>
+    <mat-dialog-actions>
+        <button cdkFocusInitial mat-dialog-close mat-raised-button>Close</button>
+        <button *ngIf="(budgets$ | async).length > 0" [disabled]="selectBudgetList.selectedOptions.selected.length == 0"
+            color="primary" mat-raised-button>
+            Add to Cart
+        </button>
+    </mat-dialog-actions>
+</ng-container>
+<ng-template #budgetsNotFound>
+    <mat-dialog-content>
+        <mat-label>Budget not found including reference <i>'{{ data }}'</i></mat-label>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+        <button cdkFocusInitial mat-dialog-close mat-raised-button>Close</button>
+    </mat-dialog-actions>
+</ng-template>

@@ -1,0 +1,47 @@
+<h2 mat-dialog-title>Publish on Slack</h2>
+<div>
+  <mat-form-field class="full-width">
+    <mat-label>Message title</mat-label>
+    <input [(ngModel)]="slackPublication.title" id="title" matInput required type="text"/>
+  </mat-form-field>
+</div>
+<div>
+  <mat-form-field>
+    <mat-label>Name</mat-label>
+    <input [(ngModel)]="slackPublication.name" id="name" matInput required type="text"/>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Slack username</mat-label>
+    <input [(ngModel)]="slackPublication.slackUsername" id="slackUsername" matInput required type="text">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Email</mat-label>
+    <input [(ngModel)]="slackPublication.email" id="email" matInput required type="email">
+  </mat-form-field>
+</div>
+<div>
+  <mat-form-field class="full-width">
+    <mat-label>Category</mat-label>
+    <mat-select [(ngModel)]="slackPublication.category" required>
+      <mat-option *ngFor="let category of slackPublicationCategories" [value]="category">
+        {{slackPublicationCategoriesText[category]}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+<div>
+  <mat-form-field class="my-text-area">
+    <mat-label>Message</mat-label>
+    <textarea
+      [(ngModel)]="slackPublication.message"
+      id="message" matInput required
+      cdkTextareaAutosize
+      cdkAutosizeMinRows="1"
+      cdkAutosizeMaxRows="5">
+    </textarea>
+    <mat-hint align="start">Main content of the message you want to post in Slack</mat-hint>
+  </mat-form-field>
+</div>
+<button mat-dialog-close mat-raised-button (click)="this.publish()">Publish message</button>

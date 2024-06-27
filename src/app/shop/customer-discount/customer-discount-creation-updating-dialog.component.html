@@ -1,0 +1,30 @@
+<div class="wrap">
+  <h2 mat-dialog-title>{{title}}</h2>
+  <mat-dialog-content>
+    <mat-form-field class="full-width">
+      <mat-label>Mobile</mat-label>
+      <input matInput [(ngModel)]="customerDiscount.userMobile"  [disabled]="!isCreate()"  type="number" required>
+      <mat-hint align="start">9 digits</mat-hint>
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <mat-label>Note</mat-label>
+      <input matInput [(ngModel)]="customerDiscount.note" type="text">
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <mat-label>Discount</mat-label>
+      <input  matInput type="number" [(ngModel)]="customerDiscount.discount" required/>
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <mat-label>Minimmum Purchase</mat-label>
+      <input  matInput type="number" [(ngModel)]="customerDiscount.minimmumPurchase" required/>
+    </mat-form-field>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button cdkFocusInitial mat-dialog-close mat-raised-button>Close</button>
+    <button (click)="create()" *ngIf="isCreate()" [disabled]=invalid() color="primary" mat-raised-button>Create
+    </button>
+    <button (click)="update()" *ngIf="!isCreate()" [disabled]=invalid() color="primary" mat-raised-button>Update
+    </button>
+  </mat-dialog-actions>
+</div>
+

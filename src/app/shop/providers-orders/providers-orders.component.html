@@ -1,0 +1,26 @@
+<mat-card>
+  <mat-card-content>
+    <mat-label><strong>Filters: </strong></mat-label>
+    <mat-form-field>
+      <mat-label>Reference</mat-label>
+      <input [(ngModel)]="providerOrderSearch.reference" matInput>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Company</mat-label>
+      <input [(ngModel)]="providerOrderSearch.company" matInput>
+    </mat-form-field>
+    <button (click)="resetSearch()" mat-icon-button>
+      <mat-icon>close</mat-icon>
+    </button>
+    <button (click)="search()" mat-icon-button>
+      <mat-icon>search</mat-icon>
+    </button>
+  </mat-card-content>
+</mat-card>
+
+<app-crud [title]="title"
+          [data]="providersOrders"
+          (create)="create()"
+          (read)="read($event)"
+          (update)="update($event)"
+          (delete)="delete($event)"></app-crud>

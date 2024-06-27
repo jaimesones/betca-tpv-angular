@@ -1,0 +1,23 @@
+<h2 mat-dialog-title>{{title}}</h2>
+<h3 *ngIf="!isCreate()" mat-dialog-title id="request-header">{{request.request}}</h3>
+<mat-dialog-content>
+  <mat-form-field class="full-width" *ngIf="isCreate()">
+    <mat-label>Text request</mat-label>
+    <input [(ngModel)]="request.request" *ngIf="isCreate()" id="company" matInput required type="text"/>
+  </mat-form-field>
+
+</mat-dialog-content>
+
+<cdk-virtual-scroll-viewport class="viewport" itemSize="10" *ngIf="request.answers">
+  <div *cdkVirtualFor="let ans of request.answers" class="item">
+    [{{ans.dateSent.toLocaleString().split(",")[2]}}/{{ans.dateSent.toLocaleString().split(",")[1]?.length == 2 ? ans.dateSent.toLocaleString().split(",")[1]: "0" + ans.dateSent.toLocaleString().split(",")[1]}}/{{ans.dateSent.toLocaleString().split(",")[0]}}]
+    [{{ans.dateSent.toLocaleString().split(",")[3]}}:{{ans.dateSent.toLocaleString().split(",")[4]?.length == 2 ? ans.dateSent.toLocaleString().split(",")[4]: "0" + ans.dateSent.toLocaleString().split(",")[4]}}]
+    : {{ans.answer}}
+  </div>
+</cdk-virtual-scroll-viewport>
+
+<mat-dialog-actions>
+  <button cdkFocusInitial mat-dialog-close mat-raised-button>Close</button>
+  <button (click)="create()" *ngIf="isCreate()" [disabled]=request.resolved color="primary" mat-raised-button>Create
+  </button>
+</mat-dialog-actions>

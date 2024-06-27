@@ -1,0 +1,47 @@
+<h2 mat-dialog-title>{{title}}</h2>
+<mat-dialog-content>
+  <mat-form-field class="full-width" *ngIf="isCreate()">
+    <mat-label>Id</mat-label>
+    <input [(ngModel)]="stock.id" id="company" matInput required type="text"/>
+  </mat-form-field>
+  <mat-form-field class="full-width">
+    <mat-label>creation Date</mat-label>
+    <input [(ngModel)]="stock.creationDate" disabled="disabled" matInput required type="text"/>
+  </mat-form-field>
+    <mat-card>
+  <mat-card-content  >
+  <mat-form-field >
+    <mat-label>Barcode</mat-label>
+  <mat-select [(ngModel)]="articleLoss.barcode ">
+    <mat-option *ngFor="let i of barcode" [value]="i">
+      {{i}}
+    </mat-option>
+  </mat-select>
+  </mat-form-field>
+    <mat-form-field>
+      <mat-label>Amount</mat-label>
+      <input [(ngModel)]="articleLoss.amount" matInput type="number">
+    </mat-form-field>
+      <button (click)="AddArticleLoss()" mat-icon-button>
+        <mat-icon>add</mat-icon>
+      </button>
+  </mat-card-content>
+    </mat-card>
+  <ng-container>
+    <table>
+      <tr >
+        <th> ArticleBarcode</th>
+        <th> ArticleStock</th>
+      </tr>
+      <tr *ngFor="let i of stock.articlesWithoutAudit; let n =index ">
+        <td>{{i.barcode}}</td>
+        <td>{{i.stock}} </td>
+      </tr>
+    </table>
+  </ng-container>
+  <mat-dialog-actions>
+    <button (click)="update()"  mat-raised-button>save Audit</button>
+    <button (click)="closeAudit()" mat-raised-button>Close Audit </button>
+    <button cdkFocusInitial mat-dialog-close mat-raised-button>Cancel</button>
+  </mat-dialog-actions>
+</mat-dialog-content>

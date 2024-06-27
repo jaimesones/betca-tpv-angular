@@ -1,0 +1,17 @@
+<main class="flex-container">
+  <mat-card *ngFor="let review of searchAll() | async" class="card-container">
+    <mat-card-header>
+      <mat-card-title>Barcode: {{review.article.barcode}}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="opinion">
+      <textarea matInput placeholder="Ex. It makes me feel..." [(ngModel)]=review.opinion></textarea>
+    </mat-card-content>
+    <mat-card-actions class="score">
+      <app-score-bar [(score)]=review.score></app-score-bar>
+      <div class="updata-button">
+      <button *ngIf="!(searchIfExists(review) | async)" mat-stroked-button (click)="evaluate(review)">Evaluate</button>
+      <button *ngIf="searchIfExists(review) | async" mat-stroked-button (click)="modify(review)">Modify</button>
+      </div>
+    </mat-card-actions>
+  </mat-card>
+</main>

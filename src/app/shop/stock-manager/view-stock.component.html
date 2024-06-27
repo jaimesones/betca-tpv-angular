@@ -1,0 +1,20 @@
+<mat-card>
+  <mat-card-title>{{title}}<span *ngIf="columns.length===0"> - EMPTY!</span></mat-card-title>
+  <mat-card-content>
+    <mat-table #table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
+      <mat-header-row *matHeaderRowDef="columnsHeader"></mat-header-row>
+      <mat-row *matRowDef="let item; columns: columnsHeader"></mat-row>
+      <!-- Dynamic column -->
+      <ng-container *ngFor="let def of columns" [matColumnDef]="def">
+        <mat-header-cell *matHeaderCellDef>{{ def | uppercaseWords }}</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{ row[def] }}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let item">
+        </mat-cell>
+      </ng-container>
+    </mat-table>
+  </mat-card-content>
+</mat-card>

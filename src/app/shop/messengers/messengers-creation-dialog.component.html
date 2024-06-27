@@ -1,0 +1,26 @@
+<h2 mat-dialog-title>{{title}}</h2>
+<mat-dialog-content>
+  <mat-form-field class="full-width">
+    <mat-label>From: </mat-label>
+    <input [(ngModel)]="messenger.fromUser" [disabled]="true" matInput required type="text"/>
+  </mat-form-field>
+  <app-search-by-mobile [(mobile)]="messenger.toUser" title="To: "></app-search-by-mobile>
+  <mat-form-field class="full-width">
+    <mat-label>Subject:</mat-label>
+    <input [(ngModel)]="messenger.subject" matInput required type="text">
+  </mat-form-field>
+  <mat-form-field class="full-width">
+    <mat-label>Text:</mat-label>
+    <textarea [(ngModel)]="messenger.text" matInput
+              cdkTextareaAutosize
+              required
+              #autosize="cdkTextareaAutosize"
+              ></textarea>
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button cdkFocusInitial mat-dialog-close mat-raised-button>Close</button>
+  <button (click)="create()"  [disabled]=invalid() color="primary" mat-raised-button>Create
+  </button>
+</mat-dialog-actions>
+

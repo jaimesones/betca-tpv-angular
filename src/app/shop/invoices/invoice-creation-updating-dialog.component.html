@@ -1,0 +1,21 @@
+<h2 mat-dialog-title>{{title}}</h2>
+<mat-dialog-content>
+  <mat-form-field class="full-width" *ngIf="isCreate()">
+    <mat-label>Ticket Id</mat-label>
+    <input [(ngModel)]="invoice.ticketId" id="company" matInput required type="text"/>
+  </mat-form-field>
+  <mat-form-field class="full-width" *ngIf="!isCreate()">
+    <mat-label>User Mobile</mat-label>
+    <input [(ngModel)]="user.mobile" matInput required type="number"/>
+    <button (click)="searchUser(user.mobile)" mat-button mat-icon-button matSuffix>
+      <mat-icon color="warn">search</mat-icon>
+    </button>
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button cdkFocusInitial mat-dialog-close mat-raised-button>Close</button>
+  <button (click)="create()" *ngIf="isCreate()" [disabled]=invalidCreate() color="primary" mat-raised-button>Create
+  </button>
+  <button (click)="update()" *ngIf="!isCreate()" [disabled]=invalid() color="primary" mat-raised-button>Update
+  </button>
+</mat-dialog-actions>

@@ -1,0 +1,20 @@
+<h2 mat-dialog-title>Select Mobile Reference</h2>
+<ng-container *ngIf="(selected_customer_discount | async) ;else customerDiscountNotFound">
+  <p> The mobile {{customer_discount.userMobile}} has a discount of {{customer_discount.discount}} %</p>
+  <p>Minimmum price to be applied is {{customer_discount.minimmumPurchase}} $</p>
+  <mat-dialog-actions>
+    <button cdkFocusInitial mat-dialog-close mat-raised-button>Close</button>
+    <button *ngIf="(selected_customer_discount | async)"
+            color="primary" (click) = applyDiscount(data.cart) mat-raised-button>
+      Add to Cart
+    </button>
+  </mat-dialog-actions>
+</ng-container>
+<ng-template #customerDiscountNotFound>
+  <mat-dialog-content>
+    <mat-label>Customer discount has not found mobile <i>'{{ data.mobile }}'</i></mat-label>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button cdkFocusInitial mat-dialog-close mat-raised-button>Close</button>
+  </mat-dialog-actions>
+</ng-template>

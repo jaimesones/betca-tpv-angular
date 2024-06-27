@@ -1,0 +1,52 @@
+<mat-card>
+  <mat-card-content>
+    <mat-label><strong>Filters: </strong></mat-label>
+    <mat-form-field>
+      <mat-label>Request Text</mat-label>
+      <input [(ngModel)]="technicalSupportSearch.request" matInput>
+    </mat-form-field>
+    <button (click)="search()" mat-icon-button>
+      <mat-icon>search</mat-icon>
+    </button>
+    <button (click)="resetSearch()" mat-icon-button>
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-card-content>
+</mat-card>
+
+<mat-card>
+  <mat-card-title>{{title}}</mat-card-title>
+  <mat-card-content>
+    <mat-table #table [dataSource]="requests" class="mat-elevation-z8" matSort>
+      <mat-header-row *matHeaderRowDef="columnsHeader"></mat-header-row>
+      <mat-row *matRowDef="let element; columns: columnsHeader;"></mat-row>
+      <ng-container matColumnDef="identifier">
+        <mat-header-cell *matHeaderCellDef> Identifier </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.identifier}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="request">
+        <mat-header-cell *matHeaderCellDef> Request </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.request}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="resolved">
+        <mat-header-cell *matHeaderCellDef> Resolved </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.resolved}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef>
+          <button (click)="create()" mat-button mat-icon-button matSuffix>
+            <mat-icon color="warn">add</mat-icon>
+          </button>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <button (click)="update(element)" mat-button mat-icon-button matSuffix>
+            <mat-icon color="warn">visibility</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+    </mat-table>
+  </mat-card-content>
+</mat-card>

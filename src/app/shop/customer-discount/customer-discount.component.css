@@ -1,0 +1,13 @@
+mat-form-field{
+  padding: 1rem;
+}
+mat-card{
+  margin-left: 1rem;
+  box-shadow: none !important;
+}
+
+mat-dialog-content {
+  width: 45rem;
+}
+
+

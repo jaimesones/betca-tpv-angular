@@ -1,0 +1,32 @@
+<mat-card>
+  <mat-card-content>
+    <mat-label><strong>Filters: </strong></mat-label>
+    <mat-form-field appearance="fill">
+      <mat-label>Choose a date</mat-label>
+      <input matInput [matDatepicker]="picker" [formControl]="date" [max]="maxDate">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker
+                      startView="multi-year"
+                      (yearSelected)="setYear($event)"
+                      (monthSelected)="setMonth($event, picker)"
+                      panelClass="month-picker">
+      </mat-datepicker>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Filter by</mat-label>
+      <mat-select [(value)]="dateFilter">
+        <mat-option value="both">Month & Year</mat-option>
+        <mat-option value="year">Year</mat-option>
+        <mat-option value="none">None</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button (click)="search()" mat-icon-button>
+      <mat-icon>search</mat-icon>
+    </button>
+    <button (click)="resetSearch()" mat-icon-button>
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-card-content>
+</mat-card>
+<app-crud [data]="cashierClosures" [createAction]="false" [readAction]="false"
+          [updateAction]="false" [deleteAction]="false" [title]="title"></app-crud>

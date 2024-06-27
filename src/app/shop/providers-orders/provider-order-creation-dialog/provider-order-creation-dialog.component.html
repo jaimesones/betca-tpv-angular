@@ -1,0 +1,40 @@
+<h2 mat-dialog-title>{{title}}</h2>
+<mat-dialog-content>
+
+  <mat-form-field class="half-width">
+    <mat-label>Company</mat-label>
+    <mat-select [(ngModel)]="article.providerCompany" required>
+      <mat-option *ngFor="let comp of article.providerCompany" [value]="comp">
+        {{comp}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div class="flex-group">
+    <mat-form-field class="half-width">
+      <mat-label>Barcode</mat-label>
+      <mat-select [(ngModel)]="article.providerCompany" >
+        <mat-option *ngFor="let comp of article.providerCompany" [value]="comp">
+          {{comp}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="half-width">
+      <mat-label>Description</mat-label>
+      <input [(ngModel)]="article.description" matInput disabled type="text"/>
+    </mat-form-field>
+    <button mat-mini-fab color="" aria-label="add item">
+      <mat-icon>playlist_add</mat-icon>
+    </button>
+  </div>
+
+<app-provider-orders-dialog-table></app-provider-orders-dialog-table>
+<!--  <app-search-by-company [(company)]="article.providerCompany" class="full-width"></app-search-by-company>-->
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button cdkFocusInitial mat-dialog-close mat-raised-button>Close</button>
+  <button (click)="create()" *ngIf="isCreate()" [disabled]=invalid() color="primary" mat-raised-button>Create
+  </button>
+  <button (click)="update()" *ngIf="!isCreate()" [disabled]=invalid() color="primary" mat-raised-button>Update
+  </button>
+</mat-dialog-actions>

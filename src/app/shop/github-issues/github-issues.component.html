@@ -1,0 +1,44 @@
+<mat-card>
+  <mat-card-content>
+    <h2 mat-dialog-title>Find github-issues</h2>
+    <mat-form-field>
+      <mat-select placeholder="Label" [(ngModel)]="seleccionada" name="label">
+        <mat-option *ngFor="let op of operaciones" [value]="op.valor">
+          {{op.muestraValor}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button (click)="getIssues()" mat-icon-button>
+      <mat-icon>search</mat-icon>
+    </button>
+  </mat-card-content>
+</mat-card>
+<mat-card>
+  <mat-card-content>
+    <h2 mat-dialog-title>Publish github-issues</h2>
+    <div>
+      <mat-form-field class="full-width">
+        <mat-label>Title</mat-label>
+        <input [(ngModel)]="githubPublicationModel.title" id="title" matInput required type="text"/>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field class="full-width">
+        <mat-label>Body</mat-label>
+        <input [(ngModel)]="githubPublicationModel.body" id="body" matInput required type="text"/>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field>
+        <mat-select placeholder="Label" [(ngModel)]="seleccionada" name="label">
+          <mat-option *ngFor="let op of operaciones" [value]="op.valor">
+            {{op.muestraValor}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div>
+      <button (click)="createIssue()"  color="primary" mat-raised-button>Create</button>
+    </div>
+  </mat-card-content>
+</mat-card>

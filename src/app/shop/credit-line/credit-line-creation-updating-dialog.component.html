@@ -1,0 +1,13 @@
+<h2 mat-dialog-title>{{title}}</h2>
+<mat-dialog-content>
+  <mat-form-field>
+    <mat-label>User Mobile</mat-label>
+    <input [(ngModel)]="creditLine.mobile" matInput>
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button cdkFocusInitial mat-dialog-close mat-raised-button>Close</button>
+  <button (click)="create()" color="primary" mat-raised-button>Create
+  </button>
+
+</mat-dialog-actions>

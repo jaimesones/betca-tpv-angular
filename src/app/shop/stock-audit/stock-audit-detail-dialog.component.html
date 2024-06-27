@@ -1,0 +1,41 @@
+<h1 mat-dialog-content>{{title}}</h1>
+<div>
+  <mat-dialog-content class="full-width">
+    <p> <strong>Creation Date: </strong> {{stock.creationDate}} </p>
+    <p> <strong>Close Date: </strong> {{stock.closeDate}} </p>
+  </mat-dialog-content>
+</div>
+<mat-dialog-actions class="full-width" >
+  <div >
+    <strong> Articles Without Audit</strong>
+    <table>
+      <tr>
+        <th>Barcode </th>
+        <th >Stock </th>
+      </tr>
+      <tr *ngFor="let i of stock.articlesWithoutAudit ">
+        <th>{{i.barcode}}</th>
+        <th>{{i.stock}} </th>
+      </tr>
+    </table>
+  </div>
+  <div class="center">
+    <strong>Articles Losses</strong>
+    <table>
+      <tr>
+        <th> Barcode</th>
+        <th> Amount Losses</th>
+      </tr>
+      <tr *ngFor="let i of stock.articleLoss ">
+        <th>{{i.barcode}}</th>
+        <th>{{i.amount}} </th>
+      </tr>
+    </table>
+  </div>
+  <div class="center">
+    <strong> Losses </strong> {{stock.lossValue}} $
+  </div>
+</mat-dialog-actions>
+<mat-dialog-actions>
+  <button mat-dialog-close mat-raised-button>Close</button>
+</mat-dialog-actions>

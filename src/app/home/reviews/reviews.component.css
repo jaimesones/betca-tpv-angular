@@ -1,0 +1,23 @@
+.container {
+  display: flex;
+  flex-direction: row;
+
+}
+
+.card-container {
+  margin: 5px;
+}
+
+.updata-button {
+  text-align:right
+}
+
+.opinion {
+  margin-left: 50px;
+  margin-top: 10px;
+}
+
+.score {
+  text-align: center;
+}
+

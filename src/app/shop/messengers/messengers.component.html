@@ -1,0 +1,12 @@
+<messenger-crud (create)="create()" (read)="read($event)"
+          [data]="sentMessengers" [deleteAction]="false" [updateAction]="false"  [title]="sent"></messenger-crud>
+
+<messenger-crud (read)="read($event)"
+          [data]="receivedMessengers" [deleteAction]="false" [updateAction]="false" [createAction]="false"  [title]="received"></messenger-crud>
+
+
+
+
+
+
+

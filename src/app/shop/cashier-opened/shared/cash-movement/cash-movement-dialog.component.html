@@ -1,0 +1,25 @@
+<h2 mat-dialog-title>Cash Movement</h2>
+<mat-dialog-content>
+  <mat-form-field>
+    <input [(ngModel)]="cashMovement.cash" cdkFocusInitial matInput placeholder="Cash" required type="number" min="0"/>
+    <mat-icon matSuffix color="warn">euro_symbol</mat-icon>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-select [(ngModel)]="cashMovement.type" [(value)]="cashMovement.type" placeholder="Type">
+      <mat-option *ngFor="let type of cashMovementTypes" [value]="type">
+        {{cashMovementType[type]}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <input [(ngModel)]="cashMovement.description" matInput placeholder="Description" required type="text"/>
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button cdkFocusInitial mat-dialog-close mat-raised-button>Cancel</button>
+  <button (click)="record()" [disabled]="invalid()" color="accent" mat-raised-button>
+    <mat-icon>save</mat-icon>
+    <span>Record</span>
+  </button>
+</mat-dialog-actions>
+

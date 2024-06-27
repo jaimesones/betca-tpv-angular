@@ -1,0 +1,16 @@
+<h2 mat-dialog-title>{{title}}</h2>
+<mat-dialog-content>
+  <app-search title="Reference"
+              [(key)]="voucher.reference"
+              [keys]="references"
+              (keyChange)="searchVoucherByReference()"
+              (renew)="searchVoucherByReference()"
+              obligatory="true">
+  </app-search>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button cdkFocusInitial mat-dialog-close mat-raised-button>Close</button>
+  <button (click)="onClickDoCreate()" disabled [disabled]="invalid()" color="primary" mat-raised-button>
+    Consume
+  </button>
+</mat-dialog-actions>

@@ -1,0 +1,31 @@
+<h2 mat-dialog-title>{{title}}</h2>
+<mat-dialog-content>
+  <mat-form-field class="quarter-width threshold-margin">
+    <mat-label>Warning</mat-label>
+    <input [(ngModel)]="stockAlarmLine.warning" matInput min="0" type="number"/>
+  </mat-form-field>
+  <mat-form-field class="quarter-width threshold-margin">
+    <mat-label>Critical</mat-label>
+    <input [(ngModel)]="stockAlarmLine.critical" matInput min="0" type="number"/>
+  </mat-form-field>
+  <div class="full-width">
+    <mat-label><strong>Filters: </strong></mat-label>
+    <mat-form-field>
+      <mat-label>Barcode</mat-label>
+      <input [(ngModel)]="barcode" matInput required>
+    </mat-form-field>
+    <button (click)="search()" mat-icon-button>
+      <mat-icon>search</mat-icon>
+    </button>
+  </div>
+  <mat-card *ngIf="!invalid()" class="container">
+    <mat-card-title>Article Found</mat-card-title>
+    <mat-label>Barcode: {{article?.barcode}}</mat-label>
+    <mat-label>Description: {{article?.description}}</mat-label>
+    <mat-label>Stock: {{article?.stock}}</mat-label>
+  </mat-card>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button cdkFocusInitial mat-dialog-close mat-raised-button>Close</button>
+  <button (click)="create()" [disabled]=invalid() color="primary" mat-raised-button>Create</button>
+</mat-dialog-actions>

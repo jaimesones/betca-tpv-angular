@@ -1,0 +1,40 @@
+mat-dialog-content {
+  width: 54rem;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.half-width {
+  width: 16rem;
+}
+
+.flex-group {
+  display: flex;
+}
+
+.flex-group mat-select, .flex-group mat-form-field {
+  margin-right: 2rem;
+}
+
+.mat-cell {
+  overflow: visible;
+}
+
+.mat-table {
+  overflow: auto;
+  max-height: 600px;
+}
+
+.mat-column- {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.mat-dialog-content {
+  display: flex;
+  flex-direction: column;
+}
+
+

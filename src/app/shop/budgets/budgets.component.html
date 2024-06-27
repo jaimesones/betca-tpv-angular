@@ -1,0 +1,33 @@
+<mat-card>
+    <mat-card-content>
+        <mat-label><strong>Filters: </strong></mat-label>
+        <mat-form-field>
+            <mat-label>Reference </mat-label>
+            <input [(ngModel)]="reference" matInput>
+        </mat-form-field>
+        <!-- TODO: Add space -->
+        <mat-form-field>
+            <mat-label>From </mat-label>
+            <input matInput (dateInput)="fromDate = $event.value" [matDatepicker]="fromDatePicker">
+            <mat-datepicker-toggle matSuffix [for]="fromDatePicker"></mat-datepicker-toggle>
+            <mat-datepicker #fromDatePicker></mat-datepicker>
+        </mat-form-field>
+        <!-- TODO: Add space -->
+        <mat-form-field>
+            <mat-label>Until</mat-label>
+            <input matInput (dateInput)="untilDate = $event.value" [matDatepicker]="untilDatePicker">
+            <mat-datepicker-toggle matSuffix [for]="untilDatePicker"></mat-datepicker-toggle>
+            <mat-datepicker #untilDatePicker></mat-datepicker>
+        </mat-form-field>
+
+        <button (click)="search()" mat-icon-button>
+            <mat-icon>search</mat-icon>
+        </button>
+    </mat-card-content>
+</mat-card>
+<app-crud title="Budgets" [data]="budgets" 
+    (read)="read($event)" 
+    [createAction]="false"
+    [updateAction]="false"
+    [deleteAction]="false">
+</app-crud>

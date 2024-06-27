@@ -1,0 +1,88 @@
+<mat-card>
+  <mat-card-title>
+    <mat-icon color="primary">shopping_cart</mat-icon>
+    Shopping Basket
+  </mat-card-title>
+
+  <mat-card-content>
+    <mat-table #matTable [dataSource]="shoppingItems" class="mat-elevation-z8">
+
+      <ng-container matColumnDef="image">
+        <mat-header-cell *matHeaderCellDef> Image </mat-header-cell>
+        <mat-cell *matCellDef="let item">
+          <img alt="" src="{{item.image}}">
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="description">
+        <mat-header-cell *matHeaderCellDef> Description </mat-header-cell>
+        <mat-cell *matCellDef="let item"> {{item.description}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="amount">
+        <mat-header-cell *matHeaderCellDef> Amount </mat-header-cell>
+        <mat-cell *matCellDef="let item">
+          <button color="accent" mat-icon-button (click)="onAmountChanged(item.barcode, 1)">
+            <mat-icon>add_circle_outline</mat-icon>
+          </button>
+          {{item.amount}}
+          <button color="accent" mat-icon-button (click)="onAmountChanged(item.barcode, -1)">
+            <mat-icon>remove_circle_outline</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="total">
+        <mat-header-cell *matHeaderCellDef> Total </mat-header-cell>
+        <mat-cell *matCellDef="let item"> {{(item.retailPrice * item.amount).toFixed(3).slice(0, -1)}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef> actions </mat-header-cell>
+        <mat-cell *matCellDef="let item">
+          <button (click)="delete(item)" mat-icon-button>
+            <mat-icon color="warn">close</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+    </mat-table>
+
+  </mat-card-content>
+
+  <mat-card-content>
+    <ng-container class="totalPrice">
+      <h2>Total:
+        <span>
+        {{ totalPay()| currency:'EUR':'symbol'}}
+      </span>
+      </h2>
+    </ng-container>
+
+  </mat-card-content>
+
+  <mat-card-content>
+
+    <div>
+      <button color="primary" (click)="login()"  *ngIf="!isAuthenticated()" mat-raised-button>
+        <mat-icon>person_outline</mat-icon>
+        Sign In
+      </button>&nbsp;
+
+      <button (click)="pay()" color="accent" [disabled]="!isAuthenticated()" mat-raised-button>
+        <mat-icon>credit_card</mat-icon>
+        Pay
+      </button>
+    </div>
+  </mat-card-content>
+
+  <mat-card-content>
+    <ng-container>
+      <h3> * The payment is in cash on delivery. </h3>
+    </ng-container>
+  </mat-card-content>
+
+</mat-card>

@@ -1,0 +1,12 @@
+<h2 mat-dialog-title>{{title}}</h2>
+<mat-dialog-content>
+  <mat-form-field class="full-width">
+    <mat-label>GitHubIssue</mat-label>
+  </mat-form-field>
+  <div class="alert alert-danger text-lg-center" *ngIf="isCreate">
+    <span>{{createMessage}}</span>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button cdkFocusInitial mat-dialog-close mat-raised-button>Close</button>
+</mat-dialog-actions>

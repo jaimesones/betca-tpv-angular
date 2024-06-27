@@ -1,0 +1,88 @@
+<!--`<mat-card-content>-->
+<!--  <mat-table  >-->
+<!--    <ng-container matColumnDef="id">-->
+<!--      <mat-header-cell fxFlex="5%"> #</mat-header-cell>-->
+<!--      <mat-cell  fxFlex="5%"> 1</mat-cell>-->
+<!--    </ng-container>-->
+<!--    <ng-container matColumnDef="barcode">-->
+<!--      <mat-header-cell fxFlex="28%"> Barcode</mat-header-cell>-->
+<!--      <mat-cell fxFlex="28%"> 75023423234 </mat-cell>-->
+<!--    </ng-container>-->
+<!--    <ng-container matColumnDef="retailPrice">-->
+<!--      <mat-header-cell fxFlex="28%"> Description</mat-header-cell>-->
+<!--      <mat-cell  fxFlex="11%">Camisa SportCliff</mat-cell>-->
+<!--    </ng-container>-->
+<!--    <ng-container matColumnDef="amount">-->
+<!--      <mat-header-cell fxFlex="20%"> Amount</mat-header-cell>-->
+<!--      <mat-cell fxFlex="20%">-->
+<!--        <button (click)="decreaseAmount()" color="accent" mat-icon-button>-->
+<!--          <mat-icon>remove_circle_outline</mat-icon>-->
+<!--        </button>-->
+<!--        {{item}}-->
+<!--        <button (click)="incrementAmount()" color="accent" mat-icon-button>-->
+<!--          <mat-icon>add_circle_outline</mat-icon>-->
+<!--        </button>-->
+<!--      </mat-cell>-->
+<!--    </ng-container>-->
+<!--    <ng-container matColumnDef="actions">-->
+<!--      <mat-cell  fxFlex="15%">-->
+<!--        <button (click)="delete()" mat-button mat-icon-button matSuffix>-->
+<!--          <mat-icon color="warn">close</mat-icon>-->
+<!--        </button>-->
+<!--      </mat-cell>-->
+<!--    </ng-container>-->
+<!--&lt;!&ndash;    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>&ndash;&gt;-->
+<!--&lt;!&ndash;    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>&ndash;&gt;-->
+<!--  </mat-table>-->
+<!--</mat-card-content>`-->
+
+<!--  <div class="header-container">-->
+<!--    <mat-icon color="primary">article</mat-icon>-->
+<!--    <h3>Articles</h3>-->
+<!--  </div>-->
+
+  <mat-table [dataSource]="dataSource" >
+
+    <ng-container matColumnDef="position">
+      <mat-header-cell *matHeaderCellDef fxFlex="10%"> # </mat-header-cell>
+      <mat-cell *matCellDef="let element" fxFlex="10%"> {{element.position}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="barcode">
+      <mat-header-cell *matHeaderCellDef fxFlex="25%"> Barcode </mat-header-cell>
+      <mat-cell  *matCellDef="let element" fxFlex="25%"> {{element.barcode}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="description">
+      <mat-header-cell  *matHeaderCellDef fxFlex="30%"> Description </mat-header-cell>
+      <mat-cell  *matCellDef="let element" fxFlex="30%"> {{element.description}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="requiredAmount">
+      <mat-header-cell  *matHeaderCellDef fxFlex="20%"> Required Amount </mat-header-cell>
+      <mat-cell  *matCellDef="let element" fxFlex="20%">
+        <button (click)="decreaseAmount(element)" color="accent" mat-icon-button>
+          <mat-icon>remove_circle_outline</mat-icon>
+        </button>
+        {{element.requiredAmount}}
+        <button (click)="incrementAmount(element)" color="primary" mat-icon-button>
+          <mat-icon>add_circle_outline</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef fxFlex="15%"> Actions </mat-header-cell>
+      <mat-cell *matCellDef="let element" fxFlex="15%">
+        <button (click)="delete()" mat-button mat-icon-button matSuffix>
+          <mat-icon color="warn">close</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row  *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row  *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+
+
+
